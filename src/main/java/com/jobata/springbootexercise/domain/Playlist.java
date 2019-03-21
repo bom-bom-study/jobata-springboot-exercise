@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Playlist {
     Long id;
-    Long user_id;
+    Long userId;
     String title;
 }
