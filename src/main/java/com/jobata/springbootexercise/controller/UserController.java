@@ -1,6 +1,7 @@
 package com.jobata.springbootexercise.controller;
 
-import com.jobata.springbootexercise.dto.UserDto;
+import com.jobata.springbootexercise.dto.ReqUserDto;
+import com.jobata.springbootexercise.dto.ResUserDto;
 import com.jobata.springbootexercise.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,24 +18,24 @@ public class UserController {
     }
 
     @GetMapping(value = "/users")
-    public ResponseEntity<List<UserDto>> getUsers() {
+    public ResponseEntity<List<ResUserDto>> getUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUsers());
     }
 
     @PostMapping(value = "/users")
-    public ResponseEntity postUser(@RequestBody UserDto userDto) {
-        userService.postUser(userDto);
+    public ResponseEntity postUser(@RequestBody ReqUserDto reqUserDto) {
+        userService.postUser(reqUserDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping(value = "/users/{user-id}")
-    public ResponseEntity<UserDto> getUser(@PathVariable(value = "user-id") Long id) {
+    public ResponseEntity<ResUserDto> getUser(@PathVariable(value = "user-id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(id));
     }
 
     @PatchMapping(value = "/users/{user-id}")
-    public ResponseEntity patchUser(@PathVariable(value = "user-id") Long id, @RequestBody UserDto userDto) {
-        userService.patchUser(id, userDto);
+    public ResponseEntity patchUser(@PathVariable(value = "user-id") Long id, @RequestBody ReqUserDto reqUserDto) {
+        userService.patchUser(id, reqUserDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
