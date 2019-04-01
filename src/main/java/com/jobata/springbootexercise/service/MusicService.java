@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MusicService {
@@ -18,13 +19,8 @@ public class MusicService {
 
     public List<MusicDto> getMusics() {
         List<Music> musics = musicDao.getMusics();
-        List<MusicDto> musicDtos = new ArrayList<>();
 
-        for(Music music : musics) {
-            musicDtos.add(new MusicDto(music));
-        }
-
-        return musicDtos;
+        return musics.stream().map(MusicDto::new).collect(Collectors.toList());
     }
 
     public void postMusic(MusicDto musicDto) {
