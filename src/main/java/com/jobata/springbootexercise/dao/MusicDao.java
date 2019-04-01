@@ -1,7 +1,6 @@
 package com.jobata.springbootexercise.dao;
 
 import com.jobata.springbootexercise.domain.Music;
-import com.jobata.springbootexercise.dto.MusicDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
