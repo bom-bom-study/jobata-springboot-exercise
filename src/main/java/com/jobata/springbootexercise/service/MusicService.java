@@ -2,7 +2,6 @@ package com.jobata.springbootexercise.service;
 
 import com.jobata.springbootexercise.dao.MusicDao;
 import com.jobata.springbootexercise.domain.Music;
-import com.jobata.springbootexercise.dto.MusicDto;
 import com.jobata.springbootexercise.dto.ReqMusicDto;
 import com.jobata.springbootexercise.dto.ResMusicDto;
 import org.springframework.stereotype.Service;
