@@ -19,16 +19,16 @@ public class MusicDao {
         return jdbcTemplate.query("SELECT * FROM musics", ((rs, rowNum) -> new Music(rs.getLong("id"), rs.getString("title"), rs.getString("singer"))));
     }
 
-    public int postMusic(MusicDto musicDto) {
-        return jdbcTemplate.update("INSERT INTO musics(title, singer) VALUES(?, ?)", musicDto.getTitle(), musicDto.getSinger());
+    public int postMusic(String title, String singer) {
+        return jdbcTemplate.update("INSERT INTO musics(title, singer) VALUES(?, ?)", title, singer);
     }
 
     public Music getMusic(Long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM musics WHERE id=?", ((rs, rowNum) -> new Music(rs.getLong("id"), rs.getString("title"), rs.getString("singer"))), id);
     }
 
-    public int patchMusic(Long id, MusicDto musicDto) {
-        return jdbcTemplate.update("UPDATE musics SET title=?, singer=? WHERE id=?", musicDto.getTitle(), musicDto.getSinger(), id);
+    public int patchMusic(Long id, String title, String singer) {
+        return jdbcTemplate.update("UPDATE musics SET title=?, singer=? WHERE id=?",title, singer, id);
     }
 
     public int deleteMusic(Long id) {
