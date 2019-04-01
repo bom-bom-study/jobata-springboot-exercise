@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlaylistMusicDto {
+public class ReqPlaylistMusicDto {
     Long playlistId;
     Long musicId;
 }

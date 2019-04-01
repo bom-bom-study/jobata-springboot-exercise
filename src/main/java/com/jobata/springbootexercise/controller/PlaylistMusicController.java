@@ -1,7 +1,7 @@
 package com.jobata.springbootexercise.controller;
 
-import com.jobata.springbootexercise.dto.MusicDto;
-import com.jobata.springbootexercise.dto.PlaylistMusicDto;
+import com.jobata.springbootexercise.dto.ReqPlaylistMusicDto;
+import com.jobata.springbootexercise.dto.ResPlaylistMusicDto;
 import com.jobata.springbootexercise.service.PlaylistMusicService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ public class PlaylistMusicController {
     }
 
     @PostMapping(value = "/users/{user-id}/playlists/{playlist-id}/musics")
-    public ResponseEntity postPlaylistMusic(@PathVariable(value = "playlist-id") Long id, @RequestBody PlaylistMusicDto playlistMusicDto) {
-        playlistMusicService.postPlaylistMusic(id, playlistMusicDto);
+    public ResponseEntity postPlaylistMusic(@PathVariable(value = "playlist-id") Long id, @RequestBody ReqPlaylistMusicDto reqPlaylistMusicDto) {
+        playlistMusicService.postPlaylistMusic(id, reqPlaylistMusicDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping(value = "/users/{user-id}/playlists/{playlist-id}/musics")
-    public ResponseEntity<List<MusicDto>> getPlaylistMusics(@PathVariable(value = "playlist-id") Long id) {
+    public ResponseEntity<List<ResPlaylistMusicDto>> getPlaylistMusics(@PathVariable(value = "playlist-id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(playlistMusicService.getPlaylistMusics(id));
     }
 
