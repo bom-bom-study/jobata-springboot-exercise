@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -18,13 +19,8 @@ public class UserService {
 
     public List<UserDto> getUsers() {
         List<User> users = userDao.getUsers();
-        List<UserDto> userDtos = new ArrayList<>();
 
-        for(User user : users) {
-            userDtos.add(new UserDto(user));
-        }
-
-        return userDtos;
+        return users.stream().map(UserDto::new).collect(Collectors.toList());
     }
 
     public void postUser(UserDto userDto) {
