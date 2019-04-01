@@ -1,7 +1,6 @@
 package com.jobata.springbootexercise.dto;
 
 import com.jobata.springbootexercise.domain.Music;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,13 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class MusicDto {
+public class ResPlaylistMusicDto {
     Long id;
     String title;
     String singer;
 
-    public MusicDto(Music music) {
+    public ResPlaylistMusicDto(Music music) {
         this.id = music.getId();
         this.title = music.getTitle();
         this.singer = music.getSinger();

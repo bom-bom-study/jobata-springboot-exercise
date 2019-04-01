@@ -1,7 +1,6 @@
 package com.jobata.springbootexercise.dao;
 
 import com.jobata.springbootexercise.domain.Music;
-import com.jobata.springbootexercise.dto.PlaylistMusicDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +14,8 @@ public class PlaylistMusicDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public int postPlaylistMusic(Long id, PlaylistMusicDto playlistMusicDto) {
-        return jdbcTemplate.update("INSERT INTO playlist_music_list(playlist_id, music_id) VALUES(?, ?)", id, playlistMusicDto.getMusicId());
+    public int postPlaylistMusic(Long id, Long musicId) {
+        return jdbcTemplate.update("INSERT INTO playlist_music_list(playlist_id, music_id) VALUES(?, ?)", id, musicId);
     }
 
     public List<Music> getPlaylistMusics(Long id) {

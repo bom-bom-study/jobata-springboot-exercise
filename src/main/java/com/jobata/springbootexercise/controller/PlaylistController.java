@@ -1,6 +1,7 @@
 package com.jobata.springbootexercise.controller;
 
-import com.jobata.springbootexercise.dto.PlaylistDto;
+import com.jobata.springbootexercise.dto.ReqPlaylistDto;
+import com.jobata.springbootexercise.dto.ResPlaylistDto;
 import com.jobata.springbootexercise.service.PlaylistService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,24 +18,24 @@ public class PlaylistController {
     }
 
     @GetMapping(value = "/users/{user-id}/playlists")
-    public ResponseEntity<List<PlaylistDto>> getPlaylists() {
+    public ResponseEntity<List<ResPlaylistDto>> getPlaylists() {
         return ResponseEntity.status(HttpStatus.OK).body(playlistService.getPlaylists());
     }
 
     @PostMapping(value = "/users/{user-id}/playlists")
-    public ResponseEntity postPlaylist(@RequestBody PlaylistDto playlistDto) {
-        playlistService.postPlaylist(playlistDto);
+    public ResponseEntity postPlaylist(@RequestBody ReqPlaylistDto reqPlaylistDto) {
+        playlistService.postPlaylist(reqPlaylistDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping(value = "/users/{user-id}/playlists/{playlist-id}")
-    public ResponseEntity<PlaylistDto> getPlaylist(@PathVariable(value = "playlist-id") Long id) {
+    public ResponseEntity<ResPlaylistDto> getPlaylist(@PathVariable(value = "playlist-id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(playlistService.getPlaylist(id));
     }
 
     @PatchMapping(value = "/users/{user-id}/playlists/{playlist-id}")
-    public ResponseEntity patchPlaylist(@PathVariable(value = "playlist-id") Long id, @RequestBody PlaylistDto playlistDto) {
-        playlistService.patchPlaylist(id, playlistDto);
+    public ResponseEntity patchPlaylist(@PathVariable(value = "playlist-id") Long id, @RequestBody ReqPlaylistDto reqPlaylistDto) {
+        playlistService.patchPlaylist(id, reqPlaylistDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

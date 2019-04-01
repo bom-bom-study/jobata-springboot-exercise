@@ -2,10 +2,10 @@ package com.jobata.springbootexercise.service;
 
 import com.jobata.springbootexercise.dao.PlaylistDao;
 import com.jobata.springbootexercise.domain.Playlist;
-import com.jobata.springbootexercise.dto.PlaylistDto;
+import com.jobata.springbootexercise.dto.ReqPlaylistDto;
+import com.jobata.springbootexercise.dto.ResPlaylistDto;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,22 +17,22 @@ public class PlaylistService {
         this.playlistDao = playlistDao;
     }
 
-    public List<PlaylistDto> getPlaylists() {
+    public List<ResPlaylistDto> getPlaylists() {
         List<Playlist> playlists = playlistDao.getPlaylists();
 
-        return playlists.stream().map(PlaylistDto::new).collect(Collectors.toList());
+        return playlists.stream().map(ResPlaylistDto::new).collect(Collectors.toList());
     }
 
-    public void postPlaylist(PlaylistDto playlistDto) {
-        playlistDao.postPlaylist(playlistDto);
+    public void postPlaylist(ReqPlaylistDto reqPlaylistDto) {
+        playlistDao.postPlaylist(reqPlaylistDto.getUserId(), reqPlaylistDto.getTitle());
     }
 
-    public PlaylistDto getPlaylist(Long id) {
-        return new PlaylistDto(playlistDao.getPlaylist(id));
+    public ResPlaylistDto getPlaylist(Long id) {
+        return new ResPlaylistDto(playlistDao.getPlaylist(id));
     }
 
-    public void patchPlaylist(Long id, PlaylistDto playlistDto) {
-        playlistDao.patchPlaylist(id, playlistDto);
+    public void patchPlaylist(Long id, ReqPlaylistDto reqPlaylistDto) {
+        playlistDao.patchPlaylist(id, reqPlaylistDto.getTitle());
     }
 
     public void deletePlaylist(Long id) {

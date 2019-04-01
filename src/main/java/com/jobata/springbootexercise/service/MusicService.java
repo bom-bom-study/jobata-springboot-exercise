@@ -2,10 +2,10 @@ package com.jobata.springbootexercise.service;
 
 import com.jobata.springbootexercise.dao.MusicDao;
 import com.jobata.springbootexercise.domain.Music;
-import com.jobata.springbootexercise.dto.MusicDto;
+import com.jobata.springbootexercise.dto.ReqMusicDto;
+import com.jobata.springbootexercise.dto.ResMusicDto;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,22 +17,22 @@ public class MusicService {
         this.musicDao = musicDao;
     }
 
-    public List<MusicDto> getMusics() {
+    public List<ResMusicDto> getMusics() {
         List<Music> musics = musicDao.getMusics();
 
-        return musics.stream().map(MusicDto::new).collect(Collectors.toList());
+        return musics.stream().map(ResMusicDto::new).collect(Collectors.toList());
     }
 
-    public void postMusic(MusicDto musicDto) {
-        musicDao.postMusic(musicDto);
+    public void postMusic(ReqMusicDto reqMusicDto) {
+        musicDao.postMusic(reqMusicDto.getTitle(), reqMusicDto.getSinger());
     }
 
-    public MusicDto getMusic(Long id) {
-        return new MusicDto(musicDao.getMusic(id));
+    public ResMusicDto getMusic(Long id) {
+        return new ResMusicDto(musicDao.getMusic(id));
     }
 
-    public void patchMusic(Long id, MusicDto musicDto) {
-        musicDao.patchMusic(id, musicDto);
+    public void patchMusic(Long id, ReqMusicDto reqMusicDto) {
+        musicDao.patchMusic(id, reqMusicDto.getTitle(), reqMusicDto.getSinger());
     }
 
     public void deleteMusic(Long id) {

@@ -1,6 +1,7 @@
 package com.jobata.springbootexercise.controller;
 
-import com.jobata.springbootexercise.dto.MusicDto;
+import com.jobata.springbootexercise.dto.ReqMusicDto;
+import com.jobata.springbootexercise.dto.ResMusicDto;
 import com.jobata.springbootexercise.service.MusicService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,24 +18,24 @@ public class MusicController {
     }
 
     @GetMapping(value = "/musics")
-    public ResponseEntity<List<MusicDto>> getMusics() {
+    public ResponseEntity<List<ResMusicDto>> getMusics() {
         return ResponseEntity.status(HttpStatus.OK).body(musicService.getMusics());
     }
 
     @PostMapping(value = "/musics")
-    public ResponseEntity postMusic(@RequestBody MusicDto musicDto) {
-        musicService.postMusic(musicDto);
+    public ResponseEntity postMusic(@RequestBody ReqMusicDto reqMusicDto) {
+        musicService.postMusic(reqMusicDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping(value = "/musics/{music-id}")
-    public ResponseEntity<MusicDto> getMusic(@PathVariable(value = "music-id") Long id) {
+    public ResponseEntity<ResMusicDto> getMusic(@PathVariable(value = "music-id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(musicService.getMusic(id));
     }
 
     @PatchMapping(value = "/musics/{music-id}")
-    public ResponseEntity patchMusic(@PathVariable(value = "music-id") Long id, @RequestBody MusicDto musicDto) {
-        musicService.patchMusic(id, musicDto);
+    public ResponseEntity patchMusic(@PathVariable(value = "music-id") Long id, @RequestBody ReqMusicDto reqMusicDto) {
+        musicService.patchMusic(id, reqMusicDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
