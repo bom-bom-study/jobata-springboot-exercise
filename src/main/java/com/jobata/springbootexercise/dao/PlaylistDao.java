@@ -1,7 +1,6 @@
 package com.jobata.springbootexercise.dao;
 
 import com.jobata.springbootexercise.domain.Playlist;
-import com.jobata.springbootexercise.dto.PlaylistDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,16 +18,16 @@ public class PlaylistDao {
         return jdbcTemplate.query("SELECT * FROM playlists", ((rs, rowNum) -> new Playlist(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title"))));
     }
 
-    public int postPlaylist(PlaylistDto playlistDto) {
-        return jdbcTemplate.update("INSERT INTO playlists(user_id, title) VALUES(?, ?)", playlistDto.getUserId(), playlistDto.getTitle());
+    public int postPlaylist(Long userId, String title) {
+        return jdbcTemplate.update("INSERT INTO playlists(user_id, title) VALUES(?, ?)", userId, title);
     }
 
     public Playlist getPlaylist(Long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM playlists WHERE id=?", ((rs, rowNum) -> new Playlist(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title"))), id);
     }
 
-    public int patchPlaylist(Long id, PlaylistDto playlistDto) {
-        return jdbcTemplate.update("UPDATE playlists SET title=? WHERE id=?", playlistDto.getTitle(), id);
+    public int patchPlaylist(Long id, String title) {
+        return jdbcTemplate.update("UPDATE playlists SET title=? WHERE id=?", title, id);
     }
 
     public int deletePlaylist(Long id) {
